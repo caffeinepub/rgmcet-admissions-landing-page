@@ -242,6 +242,14 @@ function LandingPage() {
     yearOfPassing: "",
   });
 
+  const [footerForm, setFooterForm] = useState({
+    fullName: "",
+    phoneNumber: "",
+    program: "" as Program | "",
+  });
+  const [footerSuccess, setFooterSuccess] = useState(false);
+  const [footerSubmitting, setFooterSubmitting] = useState(false);
+
   const submitEnquiry = useSubmitEnquiry();
 
   useScrollFadeIn();
@@ -300,6 +308,31 @@ function LandingPage() {
       toast.error(
         "Something went wrong. Please try again or call us directly.",
       );
+    }
+  };
+
+  const handleFooterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerForm.program) {
+      toast.error("Please select a program.");
+      return;
+    }
+    setFooterSubmitting(true);
+    try {
+      await submitEnquiry.mutateAsync({
+        fullName: footerForm.fullName,
+        email: "",
+        phoneNumber: footerForm.phoneNumber,
+        cityState: "",
+        program: footerForm.program as Program,
+        specialization: "",
+        yearOfPassing: 0,
+      });
+      setFooterSuccess(true);
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setFooterSubmitting(false);
     }
   };
 
@@ -419,7 +452,7 @@ function LandingPage() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('/assets/generated/rgmcet-campus-hero.dim_1400x700.jpg')",
+              "url('/assets/uploads/ChatGPT-Image-Mar-1-2026-02_28_26-PM-1.png')",
           }}
         />
         <div
@@ -581,7 +614,8 @@ function LandingPage() {
       <section
         id="programs"
         data-ocid="programs.section"
-        className="py-20 bg-background"
+        className="py-20"
+        style={{ backgroundColor: "oklch(0.13 0.055 250)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
@@ -594,11 +628,11 @@ function LandingPage() {
             >
               Academic Programs
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
               Choose Your{" "}
               <span style={{ color: "oklch(var(--crimson))" }}>Path</span>
             </h2>
-            <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
+            <p className="text-white/70 mt-4 max-w-xl mx-auto">
               From undergraduate engineering to advanced research, RGMCET offers
               programs designed to build tomorrow's leaders.
             </p>
@@ -680,7 +714,7 @@ function LandingPage() {
                 style={{ aspectRatio: "4/3" }}
               >
                 <img
-                  src="/assets/generated/rgmcet-campus-hero.dim_1400x700.jpg"
+                  src="/assets/uploads/ChatGPT-Image-Mar-1-2026-02_28_26-PM-1.png"
                   alt="RGMCET Campus"
                   className="w-full h-full object-cover"
                 />
@@ -711,11 +745,11 @@ function LandingPage() {
               >
                 Why RGMCET
               </div>
-              <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+              <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
                 Built for{" "}
                 <span style={{ color: "oklch(var(--gold))" }}>Excellence</span>
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-white/70 mb-8">
                 For over two decades, RGMCET has been the preferred destination
                 for engineering and management education in Andhra Pradesh,
                 nurturing talent with academic rigor and industry readiness.
@@ -732,7 +766,7 @@ function LandingPage() {
                     >
                       {feat.icon}
                     </div>
-                    <span className="text-sm font-medium text-foreground">
+                    <span className="text-sm font-medium text-white">
                       {feat.text}
                     </span>
                   </div>
@@ -763,7 +797,7 @@ function LandingPage() {
       >
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="font-display text-3xl font-bold text-white">
+            <h2 className="font-display text-3xl font-bold text-black">
               Our Achievements &amp; Accreditations
             </h2>
           </div>
@@ -795,13 +829,13 @@ function LandingPage() {
                 className="text-center p-5 rounded-xl"
                 style={{ backgroundColor: "oklch(1 0 0 / 0.1)" }}
               >
-                <div className="flex justify-center mb-3 text-white/90">
+                <div className="flex justify-center mb-3 text-black/80">
                   {item.icon}
                 </div>
-                <div className="font-display text-lg font-bold text-white">
+                <div className="font-display text-lg font-bold text-black">
                   {item.title}
                 </div>
-                <div className="text-white/70 text-sm mt-1">{item.sub}</div>
+                <div className="text-black/70 text-sm mt-1">{item.sub}</div>
               </div>
             ))}
           </div>
@@ -812,7 +846,8 @@ function LandingPage() {
       <section
         id="testimonials"
         data-ocid="testimonials.section"
-        className="py-20 bg-background"
+        className="py-20"
+        style={{ backgroundColor: "oklch(0.13 0.055 250)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
@@ -825,7 +860,7 @@ function LandingPage() {
             >
               Student Stories
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
               Voices of{" "}
               <span style={{ color: "oklch(0.62 0.16 72)" }}>Success</span>
             </h2>
@@ -836,8 +871,12 @@ function LandingPage() {
               <div
                 key={t.name}
                 data-ocid={`testimonials.item.${idx + 1}`}
-                className="rounded-xl p-6 fade-in-up hover-lift bg-card border border-border relative"
-                style={{ animationDelay: `${idx * 0.15}s` }}
+                className="rounded-xl p-6 fade-in-up hover-lift relative"
+                style={{
+                  animationDelay: `${idx * 0.15}s`,
+                  backgroundColor: "oklch(0.16 0.065 250)",
+                  border: "1px solid oklch(1 0 0 / 0.15)",
+                }}
               >
                 <div
                   className="absolute top-0 left-6 right-6 h-0.5 rounded-full"
@@ -850,7 +889,7 @@ function LandingPage() {
                   >
                     &ldquo;
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  <p className="text-white/70 text-sm leading-relaxed mb-6">
                     {t.quote}
                   </p>
                   <div className="flex items-center gap-3">
@@ -861,10 +900,10 @@ function LandingPage() {
                       {t.initials}
                     </div>
                     <div>
-                      <div className="font-semibold text-sm text-foreground">
+                      <div className="font-semibold text-sm text-white">
                         {t.name}
                       </div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-xs text-white/50">
                         {t.program} · {t.year}
                       </div>
                       <div
@@ -1161,146 +1200,330 @@ function LandingPage() {
       <footer
         id="contact"
         style={{ backgroundColor: "oklch(var(--navy))" }}
-        className="pt-16 pb-6"
+        className="pt-0 pb-6"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="grid md:grid-cols-3 gap-12 pb-12 border-b"
-            style={{ borderColor: "oklch(1 0 0 / 0.1)" }}
-          >
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src="/assets/generated/rgmcet-logo-transparent.dim_200x200.png"
-                  alt="RGMCET Logo"
-                  className="w-12 h-12 object-contain rounded-full bg-white/10 p-0.5"
+        {/* Admissions Open Banner Form */}
+        <div
+          className="w-full py-10 px-4"
+          style={{ backgroundColor: "oklch(0.09 0.045 250)" }}
+        >
+          <div className="max-w-7xl mx-auto">
+            {footerSuccess ? (
+              <div
+                data-ocid="footer.enquiry.success_state"
+                className="flex flex-col items-center justify-center py-6 gap-3"
+              >
+                <CheckCircle2
+                  className="w-10 h-10"
+                  style={{ color: "oklch(var(--gold))" }}
                 />
-                <div>
-                  <div
-                    className="font-display font-bold text-xl"
-                    style={{ color: "oklch(var(--gold))" }}
-                  >
-                    RGMCET
-                  </div>
-                  <div className="text-white/50 text-xs">Since 1999</div>
-                </div>
+                <p className="font-bold text-white text-lg">
+                  Thank you! We'll contact you shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFooterSuccess(false);
+                    setFooterForm({
+                      fullName: "",
+                      phoneNumber: "",
+                      program: "",
+                    });
+                  }}
+                  className="text-sm underline"
+                  style={{ color: "oklch(var(--gold))" }}
+                >
+                  Submit another enquiry
+                </button>
               </div>
-              <p className="text-white/60 text-sm leading-relaxed">
-                Rajeev Gandhi Memorial College of Engineering and Technology —
-                shaping engineers and leaders of tomorrow through academic
-                excellence, research, and innovation.
-              </p>
-              <div className="flex gap-3 mt-5">
-                {["NAAC", "NBA", "JNTUA"].map((badge) => (
+            ) : (
+              <div className="flex flex-col md:flex-row md:items-center gap-6">
+                <div className="md:flex-shrink-0">
                   <span
-                    key={badge}
-                    className="text-xs font-bold px-2 py-1 rounded"
+                    className="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1 rounded mb-2"
                     style={{
                       backgroundColor: "oklch(var(--gold) / 0.15)",
                       color: "oklch(var(--gold))",
                     }}
                   >
-                    {badge}
+                    ✦ Admissions Open
                   </span>
-                ))}
+                  <h3 className="font-display text-2xl font-bold text-white">
+                    Admissions Open 2025
+                  </h3>
+                  <p className="text-white/50 text-sm mt-1">
+                    Quick enquiry — we'll call you back!
+                  </p>
+                </div>
+                <form
+                  onSubmit={handleFooterSubmit}
+                  className="flex flex-col sm:flex-row gap-3 flex-1"
+                >
+                  <Input
+                    data-ocid="footer.enquiry.input"
+                    type="text"
+                    placeholder="Your Name"
+                    value={footerForm.fullName}
+                    onChange={(e) =>
+                      setFooterForm((p) => ({ ...p, fullName: e.target.value }))
+                    }
+                    required
+                    className="flex-1"
+                    style={{
+                      backgroundColor: "oklch(1 0 0 / 0.07)",
+                      borderColor: "oklch(1 0 0 / 0.2)",
+                      color: "white",
+                    }}
+                  />
+                  <Input
+                    data-ocid="footer.enquiry.phone.input"
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={footerForm.phoneNumber}
+                    onChange={(e) =>
+                      setFooterForm((p) => ({
+                        ...p,
+                        phoneNumber: e.target.value,
+                      }))
+                    }
+                    required
+                    className="flex-1"
+                    style={{
+                      backgroundColor: "oklch(1 0 0 / 0.07)",
+                      borderColor: "oklch(1 0 0 / 0.2)",
+                      color: "white",
+                    }}
+                  />
+                  <Select
+                    value={footerForm.program}
+                    onValueChange={(v) =>
+                      setFooterForm((p) => ({ ...p, program: v as Program }))
+                    }
+                  >
+                    <SelectTrigger
+                      data-ocid="footer.enquiry.program.select"
+                      className="flex-1 min-w-[140px]"
+                      style={{
+                        backgroundColor: "oklch(1 0 0 / 0.07)",
+                        borderColor: "oklch(1 0 0 / 0.2)",
+                        color: footerForm.program
+                          ? "white"
+                          : "oklch(1 0 0 / 0.4)",
+                      }}
+                    >
+                      <SelectValue placeholder="Program" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={Program.btech}>B.Tech</SelectItem>
+                      <SelectItem value={Program.mtech}>M.Tech</SelectItem>
+                      <SelectItem value={Program.mca}>MCA</SelectItem>
+                      <SelectItem value={Program.mba}>MBA</SelectItem>
+                      <SelectItem value={Program.phd}>Ph.D</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    type="submit"
+                    data-ocid="footer.enquiry.submit_button"
+                    disabled={footerSubmitting}
+                    className="font-bold px-6 whitespace-nowrap"
+                    style={{
+                      backgroundColor: "oklch(var(--gold))",
+                      color: "oklch(var(--navy))",
+                    }}
+                  >
+                    {footerSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        Sending...
+                      </span>
+                    ) : (
+                      "Submit →"
+                    )}
+                  </Button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div
+          style={{
+            background:
+              "linear-gradient(160deg, oklch(0.18 0.08 250) 0%, oklch(0.13 0.06 240) 100%)",
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+            <div
+              className="grid md:grid-cols-3 gap-12 pb-12 border-b"
+              style={{ borderColor: "#9ca3af" }}
+            >
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <img
+                    src="/assets/generated/rgmcet-logo-transparent.dim_200x200.png"
+                    alt="RGMCET Logo"
+                    className="w-12 h-12 object-contain rounded-full p-0.5"
+                    style={{ backgroundColor: "#9ca3af" }}
+                  />
+                  <div>
+                    <div
+                      className="font-display font-black text-xl"
+                      style={{ color: "#ffffff" }}
+                    >
+                      RGMCET
+                    </div>
+                    <div
+                      className="text-sm font-bold"
+                      style={{ color: "#ffffff" }}
+                    >
+                      Since 1995
+                    </div>
+                  </div>
+                </div>
+                <p
+                  className="text-sm font-semibold leading-relaxed"
+                  style={{ color: "#ffffff" }}
+                >
+                  Rajeev Gandhi Memorial College of Engineering and Technology —
+                  shaping engineers and leaders of tomorrow through academic
+                  excellence, research, and innovation.
+                </p>
+                <div className="flex gap-3 mt-5">
+                  {["NAAC", "NBA", "JNTUA"].map((badge) => (
+                    <span
+                      key={badge}
+                      className="text-xs font-black px-2 py-1 rounded"
+                      style={{
+                        backgroundColor: "#111827",
+                        color: "#f9fafb",
+                      }}
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4
+                  className="font-black text-lg mb-5 tracking-wide"
+                  style={{ color: "#ffffff" }}
+                >
+                  Quick Links
+                </h4>
+                <ul className="space-y-3">
+                  {navLinks.map((link) => (
+                    <li key={link.target}>
+                      <button
+                        type="button"
+                        data-ocid="nav.link"
+                        onClick={() => scrollTo(link.target)}
+                        className="text-sm font-bold transition-colors flex items-center gap-1 hover:underline"
+                        style={{ color: "#ffffff" }}
+                      >
+                        <ChevronRight
+                          className="w-3 h-3"
+                          style={{ color: "#ffffff" }}
+                        />
+                        {link.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                {/* Contact Us heading */}
+                <div className="mb-5">
+                  <h4
+                    className="text-lg font-black tracking-wide"
+                    style={{ color: "#ffffff" }}
+                  >
+                    Contact Us
+                  </h4>
+                  <div
+                    className="mt-1.5 h-0.5 w-10 rounded-full"
+                    style={{ backgroundColor: "#ffffff" }}
+                  />
+                </div>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <MapPin
+                      className="w-4 h-4 mt-0.5 flex-shrink-0"
+                      style={{ color: "#ffffff" }}
+                    />
+                    <span
+                      className="text-sm font-semibold"
+                      style={{ color: "#ffffff" }}
+                    >
+                      RGMCET, Nandyal - 518501,
+                      <br />
+                      Kurnool District, Andhra Pradesh
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Phone
+                      className="w-4 h-4 flex-shrink-0"
+                      style={{ color: "#ffffff" }}
+                    />
+                    <a
+                      href="tel:+918514222500"
+                      className="text-sm font-bold transition-colors hover:underline"
+                      style={{ color: "#ffffff" }}
+                    >
+                      +91-8514-222500
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Mail
+                      className="w-4 h-4 flex-shrink-0"
+                      style={{ color: "#ffffff" }}
+                    />
+                    <a
+                      href="mailto:info@rgmcet.edu.in"
+                      className="text-sm font-bold transition-colors hover:underline"
+                      style={{ color: "#ffffff" }}
+                    >
+                      info@rgmcet.edu.in
+                    </a>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Globe
+                      className="w-4 h-4 flex-shrink-0"
+                      style={{ color: "#ffffff" }}
+                    />
+                    <a
+                      href="https://www.rgmcet.edu.in"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-bold transition-colors hover:underline"
+                      style={{ color: "#ffffff" }}
+                    >
+                      www.rgmcet.edu.in
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-white mb-5 tracking-wide">
-                Quick Links
-              </h4>
-              <ul className="space-y-3">
-                {navLinks.map((link) => (
-                  <li key={link.target}>
-                    <button
-                      type="button"
-                      data-ocid="nav.link"
-                      onClick={() => scrollTo(link.target)}
-                      className="text-white/60 hover:text-white text-sm transition-colors flex items-center gap-1"
-                    >
-                      <ChevronRight
-                        className="w-3 h-3"
-                        style={{ color: "oklch(var(--gold))" }}
-                      />
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-5 tracking-wide">
-                Contact Us
-              </h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <MapPin
-                    className="w-4 h-4 mt-0.5 flex-shrink-0"
-                    style={{ color: "oklch(var(--gold))" }}
-                  />
-                  <span className="text-white/60 text-sm">
-                    RGMCET, Nandyal - 518501,
-                    <br />
-                    Kurnool District, Andhra Pradesh
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: "oklch(var(--gold))" }}
-                  />
-                  <a
-                    href="tel:+918514222500"
-                    className="text-white/60 hover:text-white text-sm transition-colors"
-                  >
-                    +91-8514-222500
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: "oklch(var(--gold))" }}
-                  />
-                  <a
-                    href="mailto:info@rgmcet.edu.in"
-                    className="text-white/60 hover:text-white text-sm transition-colors"
-                  >
-                    info@rgmcet.edu.in
-                  </a>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Globe
-                    className="w-4 h-4 flex-shrink-0"
-                    style={{ color: "oklch(var(--gold))" }}
-                  />
-                  <a
-                    href="https://www.rgmcet.edu.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/60 hover:text-white text-sm transition-colors"
-                  >
-                    www.rgmcet.edu.in
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-            <span>
-              © {new Date().getFullYear()} RGMCET. Affiliated to JNTUA · NAAC
-              Accredited · All rights reserved.
-            </span>
-            <a
-              href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/30 hover:text-white/60 transition-colors"
+            <div
+              className="pt-6 pb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold"
+              style={{ color: "#ffffff" }}
             >
-              Built with ❤️ using caffeine.ai
-            </a>
+              <span>
+                © {new Date().getFullYear()} RGMCET. Affiliated to JNTUA · NAAC
+                Accredited · All rights reserved.
+              </span>
+              <a
+                href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:underline"
+                style={{ color: "#ffffff" }}
+              >
+                Built with ❤️ using caffeine.ai
+              </a>
+            </div>
           </div>
         </div>
       </footer>
