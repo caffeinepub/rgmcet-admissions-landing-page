@@ -327,7 +327,7 @@ function LandingPage() {
               <div>
                 <div
                   className="font-display font-bold text-lg leading-tight"
-                  style={{ color: "oklch(var(--gold))" }}
+                  style={{ color: "white" }}
                 >
                   RGMCET
                 </div>
@@ -492,7 +492,7 @@ function LandingPage() {
               className="text-base font-bold px-8 py-6 rounded-md"
               style={{
                 borderColor: "oklch(var(--gold))",
-                color: "oklch(var(--gold))",
+                color: "white",
                 backgroundColor: "transparent",
               }}
             >
@@ -517,7 +517,7 @@ function LandingPage() {
               >
                 <div
                   className="font-display font-bold text-lg"
-                  style={{ color: "oklch(var(--gold))" }}
+                  style={{ color: "white" }}
                 >
                   {item.v}
                 </div>
@@ -588,8 +588,8 @@ function LandingPage() {
             <div
               className="inline-block text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
               style={{
-                backgroundColor: "oklch(var(--navy) / 0.08)",
-                color: "oklch(var(--navy-mid))",
+                backgroundColor: "oklch(var(--gold) / 0.12)",
+                color: "oklch(var(--gold))",
               }}
             >
               Academic Programs
@@ -608,43 +608,43 @@ function LandingPage() {
             {programs.map((prog, idx) => (
               <div
                 key={prog.name}
-                className="rounded-xl p-6 hover-lift fade-in-up bg-card border border-border group"
-                style={{ animationDelay: `${idx * 0.1}s` }}
+                className="rounded-xl p-6 hover-lift fade-in-up group"
+                style={{
+                  animationDelay: `${idx * 0.1}s`,
+                  backgroundColor: "oklch(var(--navy))",
+                  border: "1px solid oklch(1 0 0 / 0.15)",
+                }}
               >
                 <div
                   className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
                   style={{
                     backgroundColor:
                       prog.color === "crimson"
-                        ? "oklch(var(--crimson) / 0.1)"
-                        : "oklch(var(--navy) / 0.1)",
+                        ? "oklch(var(--crimson) / 0.2)"
+                        : "oklch(var(--gold) / 0.2)",
                     color:
                       prog.color === "crimson"
                         ? "oklch(var(--crimson))"
-                        : "oklch(var(--navy-mid))",
+                        : "oklch(var(--gold))",
                   }}
                 >
                   {prog.icon}
                 </div>
                 <div className="flex items-baseline gap-2 mb-1">
-                  <h3 className="font-display text-2xl font-bold text-foreground">
+                  <h3 className="font-display text-2xl font-bold text-white">
                     {prog.name}
                   </h3>
-                  <span className="text-sm text-muted-foreground">
-                    {prog.duration}
-                  </span>
+                  <span className="text-sm text-white/60">{prog.duration}</span>
                 </div>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {prog.tagline}
-                </p>
+                <p className="text-sm text-white/70 mb-4">{prog.tagline}</p>
                 <div className="flex flex-wrap gap-1.5 mb-5">
                   {prog.specializations.map((spec) => (
                     <span
                       key={spec}
                       className="text-xs font-medium px-2 py-0.5 rounded-full"
                       style={{
-                        backgroundColor: "oklch(var(--navy) / 0.07)",
-                        color: "oklch(var(--navy-mid))",
+                        backgroundColor: "oklch(1 0 0 / 0.12)",
+                        color: "white",
                       }}
                     >
                       {spec}
@@ -655,7 +655,7 @@ function LandingPage() {
                   type="button"
                   onClick={() => scrollTo("admissions")}
                   className="flex items-center gap-1 text-sm font-semibold transition-all group-hover:gap-2"
-                  style={{ color: "oklch(var(--crimson))" }}
+                  style={{ color: "oklch(var(--gold))" }}
                 >
                   Know More <ChevronRight className="w-4 h-4" />
                 </button>
@@ -670,7 +670,7 @@ function LandingPage() {
         id="about"
         data-ocid="why.section"
         className="py-20"
-        style={{ backgroundColor: "oklch(0.96 0.01 245)" }}
+        style={{ backgroundColor: "oklch(0.16 0.065 250)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -713,9 +713,7 @@ function LandingPage() {
               </div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
                 Built for{" "}
-                <span style={{ color: "oklch(var(--navy-mid))" }}>
-                  Excellence
-                </span>
+                <span style={{ color: "oklch(var(--gold))" }}>Excellence</span>
               </h2>
               <p className="text-muted-foreground mb-8">
                 For over two decades, RGMCET has been the preferred destination
@@ -728,8 +726,8 @@ function LandingPage() {
                     <div
                       className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
                       style={{
-                        backgroundColor: "oklch(var(--navy) / 0.1)",
-                        color: "oklch(var(--navy-mid))",
+                        backgroundColor: "oklch(1 0 0 / 0.1)",
+                        color: "oklch(var(--gold))",
                       }}
                     >
                       {feat.icon}
@@ -744,7 +742,7 @@ function LandingPage() {
                 onClick={() => scrollTo("admissions")}
                 className="mt-8 font-bold px-8 py-5"
                 style={{
-                  backgroundColor: "oklch(var(--navy-mid))",
+                  backgroundColor: "oklch(var(--crimson))",
                   color: "white",
                 }}
               >
@@ -858,7 +856,7 @@ function LandingPage() {
                   <div className="flex items-center gap-3">
                     <div
                       className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-white"
-                      style={{ backgroundColor: "oklch(var(--navy-mid))" }}
+                      style={{ backgroundColor: "oklch(var(--crimson))" }}
                     >
                       {t.initials}
                     </div>
