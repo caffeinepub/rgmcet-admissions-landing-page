@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* RGMCET Brand Colors - OKLCH raw L C H values */
+    --navy: 0.22 0.08 250;
+    --navy-mid: 0.28 0.12 250;
+    --navy-light: 0.35 0.1 250;
+    --crimson: 0.4 0.2 15;
+    --crimson-light: 0.5 0.18 15;
+    --gold: 0.75 0.18 75;
+    --gold-dark: 0.62 0.16 72;
+
+    /* Semantic tokens */
+    --background: 0.97 0.01 240;
+    --foreground: 0.15 0.04 250;
+    --card: 1 0 0;
+    --card-foreground: 0.15 0.04 250;
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0.04 250;
+    --primary: 0.28 0.12 250;
+    --primary-foreground: 0.97 0.01 240;
+    --secondary: 0.93 0.02 240;
+    --secondary-foreground: 0.28 0.12 250;
+    --muted: 0.93 0.02 240;
+    --muted-foreground: 0.52 0.04 250;
+    --accent: 0.75 0.18 75;
+    --accent-foreground: 0.15 0.04 250;
+    --destructive: 0.4 0.2 15;
+    --destructive-foreground: 0.97 0.01 240;
+    --border: 0.88 0.03 240;
+    --input: 0.88 0.03 240;
+    --ring: 0.28 0.12 250;
+    --radius: 0.5rem;
+
+    --chart-1: 0.28 0.12 250;
+    --chart-2: 0.4 0.2 15;
+    --chart-3: 0.75 0.18 75;
+    --chart-4: 0.55 0.15 200;
+    --chart-5: 0.6 0.12 150;
+
+    --sidebar: 0.22 0.08 250;
+    --sidebar-foreground: 0.97 0.01 240;
+    --sidebar-primary: 0.75 0.18 75;
+    --sidebar-primary-foreground: 0.15 0.04 250;
+    --sidebar-accent: 0.3 0.1 250;
+    --sidebar-accent-foreground: 0.97 0.01 240;
+    --sidebar-border: 0.3 0.1 250;
+    --sidebar-ring: 0.75 0.18 75;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", serif;
+  }
+
+  .text-navy {
+    color: oklch(var(--navy));
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .text-crimson {
+    color: oklch(var(--crimson));
+  }
+
+  .bg-navy {
+    background-color: oklch(var(--navy));
+  }
+
+  .bg-navy-mid {
+    background-color: oklch(var(--navy-mid));
+  }
+
+  .bg-crimson {
+    background-color: oklch(var(--crimson));
+  }
+
+  .bg-gold {
+    background-color: oklch(var(--gold));
+  }
+
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+
+  .border-crimson {
+    border-color: oklch(var(--crimson));
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hover-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Pulse animation for floating button */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.75 0.18 75 / 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px oklch(0.75 0.18 75 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.75 0.18 75 / 0);
+  }
+}
+
+.pulse-gold {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* Counter animation */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.count-animate {
+  animation: count-up 0.5s ease-out forwards;
+}
