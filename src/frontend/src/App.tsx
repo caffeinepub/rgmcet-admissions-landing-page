@@ -158,32 +158,35 @@ const programs = [
 
 const features = [
   {
-    icon: <Building2 className="w-5 h-5" />,
+    icon: <Building2 className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Modern Infrastructure & State-of-the-Art Labs",
   },
   {
-    icon: <TrendingUp className="w-5 h-5" />,
+    icon: <TrendingUp className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Industry-Leading Placement Record",
   },
   {
-    icon: <Users className="w-5 h-5" />,
+    icon: <Users className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Experienced & Dedicated Faculty",
   },
-  { icon: <Award className="w-5 h-5" />, text: "NAAC Accredited Institution" },
   {
-    icon: <FlaskConical className="w-5 h-5" />,
+    icon: <Award className="w-5 h-5" style={{ color: "#D4AF37" }} />,
+    text: "NAAC Accredited Institution",
+  },
+  {
+    icon: <FlaskConical className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Research & Innovation Centers",
   },
   {
-    icon: <Heart className="w-5 h-5" />,
+    icon: <Heart className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Holistic Student Development Programs",
   },
   {
-    icon: <Globe className="w-5 h-5" />,
+    icon: <Globe className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "Strong Alumni Network Worldwide",
   },
   {
-    icon: <BookOpen className="w-5 h-5" />,
+    icon: <BookOpen className="w-5 h-5" style={{ color: "#D4AF37" }} />,
     text: "JNTUA Affiliated – Recognized University",
   },
 ];
@@ -477,9 +480,9 @@ function LandingPage() {
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase"
             style={{
-              backgroundColor: "oklch(var(--gold) / 0.15)",
-              border: "1px solid oklch(var(--gold) / 0.4)",
-              color: "oklch(var(--gold))",
+              backgroundColor: "oklch(1 0 0 / 0.15)",
+              border: "1px solid oklch(1 0 0 / 0.4)",
+              color: "white",
             }}
           >
             <Star className="w-3 h-3 fill-current" />
@@ -620,7 +623,7 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
             <div
-              className="inline-block text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
+              className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
               style={{
                 backgroundColor: "oklch(var(--gold) / 0.12)",
                 color: "oklch(var(--gold))",
@@ -628,7 +631,7 @@ function LandingPage() {
             >
               Academic Programs
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-white">
               Choose Your{" "}
               <span style={{ color: "oklch(var(--crimson))" }}>Path</span>
             </h2>
@@ -737,7 +740,7 @@ function LandingPage() {
 
             <div className="fade-in-up">
               <div
-                className="inline-block text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
+                className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
                 style={{
                   backgroundColor: "oklch(var(--crimson) / 0.1)",
                   color: "oklch(var(--crimson))",
@@ -852,7 +855,7 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
             <div
-              className="inline-block text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
+              className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
               style={{
                 backgroundColor: "oklch(0.62 0.16 72 / 0.15)",
                 color: "oklch(0.62 0.16 72)",
@@ -860,7 +863,7 @@ function LandingPage() {
             >
               Student Stories
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-white">
               Voices of{" "}
               <span style={{ color: "oklch(0.62 0.16 72)" }}>Success</span>
             </h2>
@@ -928,21 +931,29 @@ function LandingPage() {
         className="py-20"
         style={{
           background:
-            "linear-gradient(160deg, oklch(var(--navy)) 0%, oklch(0.25 0.10 250) 60%, oklch(0.35 0.15 20) 100%)",
+            "linear-gradient(135deg, oklch(0.18 0.08 250) 0%, oklch(0.22 0.12 255) 40%, oklch(0.28 0.15 20) 70%, oklch(0.32 0.18 40) 100%)",
         }}
       >
         <div className="max-w-3xl mx-auto px-4">
+          <div className="flex justify-center mb-8">
+            <img
+              src="/assets/uploads/5527237c-8efb-404d-8fa1-14ea06e7062a-1.png"
+              alt="RGMCET Campus"
+              className="rounded-2xl shadow-2xl w-full max-w-2xl object-cover"
+              style={{ maxHeight: "320px" }}
+            />
+          </div>
           <div className="text-center mb-10 fade-in-up">
             <div
-              className="inline-block text-xs font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
+              className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
               style={{
-                backgroundColor: "oklch(var(--gold) / 0.15)",
-                color: "oklch(var(--gold))",
+                backgroundColor: "oklch(1 0 0 / 0.15)",
+                color: "white",
               }}
             >
               Admissions Open 2025
             </div>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white">
+            <h2 className="font-display text-5xl md:text-6xl font-bold text-white">
               Begin Your Admissions Journey
             </h2>
             <p className="text-white/60 mt-3">
@@ -954,8 +965,8 @@ function LandingPage() {
           <div
             className="rounded-2xl p-8 shadow-2xl fade-in-up"
             style={{
-              backgroundColor: "oklch(1 0 0 / 0.04)",
-              border: "1px solid oklch(1 0 0 / 0.12)",
+              backgroundColor: "oklch(0.18 0.05 250)",
+              border: "1px solid oklch(1 0 0 / 0.15)",
             }}
           >
             {submitEnquiry.isSuccess ? (
@@ -979,7 +990,7 @@ function LandingPage() {
                   className="mt-6"
                   style={{
                     backgroundColor: "oklch(var(--gold))",
-                    color: "oklch(var(--navy))",
+                    color: "white",
                   }}
                 >
                   Submit Another Enquiry
@@ -1000,8 +1011,8 @@ function LandingPage() {
                       }
                       required
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1021,8 +1032,8 @@ function LandingPage() {
                       }
                       required
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1045,8 +1056,8 @@ function LandingPage() {
                       }
                       required
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1069,8 +1080,8 @@ function LandingPage() {
                       }
                       required
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1089,8 +1100,8 @@ function LandingPage() {
                       <SelectTrigger
                         data-ocid="enquiry.program.select"
                         style={{
-                          backgroundColor: "oklch(1 0 0 / 0.08)",
-                          borderColor: "oklch(1 0 0 / 0.2)",
+                          backgroundColor: "oklch(0.22 0.06 250)",
+                          borderColor: "oklch(1 0 0 / 0.25)",
                           color: formData.program
                             ? "white"
                             : "oklch(1 0 0 / 0.4)",
@@ -1124,8 +1135,8 @@ function LandingPage() {
                         }))
                       }
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1150,8 +1161,8 @@ function LandingPage() {
                       }
                       required
                       style={{
-                        backgroundColor: "oklch(1 0 0 / 0.08)",
-                        borderColor: "oklch(1 0 0 / 0.2)",
+                        backgroundColor: "oklch(0.22 0.06 250)",
+                        borderColor: "oklch(1 0 0 / 0.25)",
                         color: "white",
                       }}
                     />
@@ -1178,7 +1189,7 @@ function LandingPage() {
                   className="w-full py-6 text-base font-bold rounded-xl"
                   style={{
                     backgroundColor: "oklch(var(--gold))",
-                    color: "oklch(var(--navy))",
+                    color: "white",
                   }}
                 >
                   {submitEnquiry.isPending ? (
@@ -1242,7 +1253,7 @@ function LandingPage() {
                   <span
                     className="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1 rounded mb-2"
                     style={{
-                      backgroundColor: "oklch(var(--gold) / 0.15)",
+                      backgroundColor: "oklch(1 0 0 / 0.15)",
                       color: "oklch(var(--gold))",
                     }}
                   >
@@ -1328,7 +1339,7 @@ function LandingPage() {
                     className="font-bold px-6 whitespace-nowrap"
                     style={{
                       backgroundColor: "oklch(var(--gold))",
-                      color: "oklch(var(--navy))",
+                      color: "white",
                     }}
                   >
                     {footerSubmitting ? (
@@ -1536,7 +1547,7 @@ function LandingPage() {
         className="fixed bottom-6 right-6 z-50 pulse-gold flex items-center gap-2 rounded-full px-5 py-3 font-bold text-sm shadow-2xl transition-transform hover:scale-105"
         style={{
           backgroundColor: "oklch(var(--gold))",
-          color: "oklch(var(--navy))",
+          color: "white",
         }}
       >
         <GraduationCap className="w-4 h-4" />
