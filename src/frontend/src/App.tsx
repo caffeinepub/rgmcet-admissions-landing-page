@@ -110,7 +110,7 @@ function StatItem({
 
 const programs = [
   {
-    icon: <Cpu className="w-8 h-8" />,
+    icon: <Cpu className="w-8 h-8" style={{ color: "#D4AF37" }} />,
     name: "B.Tech",
     duration: "4 Years",
     tagline: "India's most sought-after engineering degree.",
@@ -118,7 +118,7 @@ const programs = [
     color: "crimson",
   },
   {
-    icon: <Zap className="w-8 h-8" />,
+    icon: <Zap className="w-8 h-8" style={{ color: "#D4AF37" }} />,
     name: "M.Tech",
     duration: "2 Years",
     tagline: "Deepen your technical expertise.",
@@ -126,7 +126,7 @@ const programs = [
     color: "navy",
   },
   {
-    icon: <Cpu className="w-8 h-8" />,
+    icon: <Cpu className="w-8 h-8" style={{ color: "#D4AF37" }} />,
     name: "MCA",
     duration: "2 Years",
     tagline: "Build software solutions for tomorrow.",
@@ -134,7 +134,7 @@ const programs = [
     color: "crimson",
   },
   {
-    icon: <Briefcase className="w-8 h-8" />,
+    icon: <Briefcase className="w-8 h-8" style={{ color: "#D4AF37" }} />,
     name: "MBA",
     duration: "2 Years",
     tagline: "Lead organizations with confidence.",
@@ -142,7 +142,7 @@ const programs = [
     color: "navy",
   },
   {
-    icon: <Microscope className="w-8 h-8" />,
+    icon: <Microscope className="w-8 h-8" style={{ color: "#D4AF37" }} />,
     name: "Ph.D",
     duration: "3-5 Years",
     tagline: "Contribute to cutting-edge knowledge.",
