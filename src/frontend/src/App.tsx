@@ -1159,14 +1159,6 @@ function LandingPage() {
             "linear-gradient(135deg, oklch(0.18 0.08 250) 0%, oklch(0.22 0.12 255) 40%, oklch(0.28 0.15 20) 70%, oklch(0.32 0.18 40) 100%)",
         }}
       >
-        <div className="w-full mb-8">
-          <img
-            src="/assets/uploads/5527237c-8efb-404d-8fa1-14ea06e7062a-1.png"
-            alt="RGMCET Campus"
-            className="w-full object-cover"
-            style={{ maxHeight: "480px" }}
-          />
-        </div>
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-10 fade-in-up">
             <div
@@ -1186,7 +1178,16 @@ function LandingPage() {
               to you within 24 hours.
             </p>
           </div>
-
+        </div>
+        <div className="w-full mb-8">
+          <img
+            src="/assets/uploads/5527237c-8efb-404d-8fa1-14ea06e7062a-1.png"
+            alt="RGMCET Campus"
+            className="w-full object-cover"
+            style={{ maxHeight: "480px" }}
+          />
+        </div>
+        <div className="max-w-3xl mx-auto px-4">
           <div
             className="rounded-2xl p-8 shadow-2xl fade-in-up"
             style={{
