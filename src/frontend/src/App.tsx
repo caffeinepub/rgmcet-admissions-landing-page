@@ -664,14 +664,8 @@ function LandingPage() {
                 <div
                   className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
                   style={{
-                    backgroundColor:
-                      prog.color === "crimson"
-                        ? "oklch(var(--crimson) / 0.2)"
-                        : "oklch(var(--gold) / 0.2)",
-                    color:
-                      prog.color === "crimson"
-                        ? "oklch(var(--crimson))"
-                        : "oklch(var(--gold))",
+                    backgroundColor: "oklch(var(--gold) / 0.2)",
+                    color: "oklch(var(--gold))",
                   }}
                 >
                   {prog.icon}
@@ -701,7 +695,7 @@ function LandingPage() {
                   type="button"
                   onClick={() => scrollTo("admissions")}
                   className="flex items-center gap-1 text-sm font-semibold transition-all group-hover:gap-2"
-                  style={{ color: "oklch(var(--gold))" }}
+                  style={{ color: "white" }}
                 >
                   Know More <ChevronRight className="w-4 h-4" />
                 </button>
