@@ -35,6 +35,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Program } from "./backend.d";
@@ -835,8 +836,21 @@ function LandingPage() {
                 className="text-center p-5 rounded-xl"
                 style={{ backgroundColor: "oklch(1 0 0 / 0.1)" }}
               >
-                <div className="flex justify-center mb-3 text-black/80">
-                  {item.icon}
+                <div className="flex justify-center mb-3">
+                  <div
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #D4AF37 0%, #F5E07A 50%, #B8960C 100%)",
+                      borderRadius: "50%",
+                      padding: "12px",
+                      display: "inline-flex",
+                      boxShadow: "0 2px 12px #D4AF3755",
+                    }}
+                  >
+                    {React.cloneElement(item.icon, {
+                      style: { color: "#1a1a1a" },
+                    })}
+                  </div>
                 </div>
                 <div className="font-display text-lg font-bold text-black">
                   {item.title}
