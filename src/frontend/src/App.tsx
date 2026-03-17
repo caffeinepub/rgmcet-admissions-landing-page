@@ -37,6 +37,13 @@ import {
 } from "lucide-react";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import {
+  SiFacebook,
+  SiInstagram,
+  SiLinkedin,
+  SiX,
+  SiYoutube,
+} from "react-icons/si";
 import { toast } from "sonner";
 import { Program } from "./backend.d";
 import { useSubmitEnquiry } from "./hooks/useQueries";
@@ -253,6 +260,7 @@ function LandingPage() {
   });
   const [footerSuccess, setFooterSuccess] = useState(false);
   const [footerSubmitting, setFooterSubmitting] = useState(false);
+  const [galleryZoom, setGalleryZoom] = useState<number | null>(null);
 
   const submitEnquiry = useSubmitEnquiry();
 
@@ -347,9 +355,9 @@ function LandingPage() {
         data-ocid="nav.panel"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "shadow-lg" : ""}`}
         style={{
-          backgroundColor: scrolled
-            ? "oklch(var(--navy))"
-            : "oklch(var(--navy) / 0.92)",
+          background: scrolled
+            ? "linear-gradient(135deg, #0a1628 0%, #1a2a5e 50%, #0d2137 100%)"
+            : "linear-gradient(135deg, rgba(10,22,40,0.95) 0%, rgba(26,42,94,0.93) 50%, rgba(13,33,55,0.95) 100%)",
           backdropFilter: "blur(12px)",
         }}
       >
@@ -386,6 +394,38 @@ function LandingPage() {
                   {link.label}
                 </button>
               ))}
+              <div className="flex items-center gap-2 mr-2">
+                {[
+                  {
+                    Icon: SiFacebook,
+                    href: "https://www.facebook.com/profile.php?id=61586608216900",
+                    label: "Facebook",
+                  },
+                  { Icon: SiX, href: "#", label: "X (Twitter)" },
+                  { Icon: SiInstagram, href: "#", label: "Instagram" },
+                  { Icon: SiLinkedin, href: "#", label: "LinkedIn" },
+                  {
+                    Icon: SiYoutube,
+                    href: "https://www.youtube.com/@rgmcet-autonomousnandyala.7374",
+                    label: "YouTube",
+                  },
+                ].map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-7 h-7 rounded-full transition-all hover:scale-110"
+                    style={{
+                      color: "#D4AF37",
+                      backgroundColor: "rgba(212,175,55,0.12)",
+                    }}
+                  >
+                    <Icon size={13} />
+                  </a>
+                ))}
+              </div>
               <Button
                 onClick={() => scrollTo("admissions")}
                 className="text-sm font-semibold px-5 py-2 rounded-md"
@@ -720,10 +760,13 @@ function LandingPage() {
                 className="rounded-2xl overflow-hidden shadow-2xl"
                 style={{ aspectRatio: "4/3" }}
               >
-                <img
-                  src="/assets/uploads/ChatGPT-Image-Mar-1-2026-02_28_26-PM-1.png"
-                  alt="RGMCET Campus"
-                  className="w-full h-full object-cover"
+                <iframe
+                  src="https://www.youtube.com/embed/9nxcJeIeNoY"
+                  title="RGMCET Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                  style={{ border: 0 }}
                 />
               </div>
               <div
@@ -941,6 +984,171 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <section
+        id="gallery"
+        data-ocid="gallery.section"
+        className="py-20 fade-in-section"
+        style={{
+          background:
+            "linear-gradient(180deg, oklch(0.12 0.06 250) 0%, oklch(0.16 0.08 250) 100%)",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
+              style={{
+                background: "oklch(0.25 0.12 50 / 0.3)",
+                border: "1px solid oklch(0.65 0.18 50 / 0.4)",
+              }}
+            >
+              <Trophy className="w-4 h-4" style={{ color: "#D4AF37" }} />
+              <span
+                className="text-sm font-semibold"
+                style={{ color: "#D4AF37" }}
+              >
+                Placement Gallery
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Our Placement Highlights
+            </h2>
+            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+              Celebrating student success stories and industry partnerships at
+              RGMCET
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { src: "/assets/uploads/tpo-1.jpg", alt: "TPO" },
+              {
+                src: "/assets/uploads/tcs-infosys-wipro_0-sixteen_nine_0-2.jpg",
+                alt: "TCS Infosys Wipro",
+              },
+              {
+                src: "/assets/uploads/PLACEMENTLOGOS-1-3.png",
+                alt: "Placement Logos",
+              },
+              { src: "/assets/uploads/PALCEMENTS-4.png", alt: "Placements" },
+              {
+                src: "/assets/uploads/Screenshot-2026-03-16-114126-5.png",
+                alt: "Sports Events",
+              },
+              { src: "/assets/uploads/tp_2023-24-6.png", alt: "TP 2023-24" },
+            ].map((img, idx) => (
+              <button
+                key={img.alt}
+                type="button"
+                data-ocid={`gallery.item.${idx + 1}`}
+                className="relative overflow-hidden rounded-xl cursor-pointer group text-left w-full"
+                style={{
+                  aspectRatio: "4/3",
+                  border: "1px solid oklch(0.65 0.18 50 / 0.3)",
+                  background: "none",
+                  padding: 0,
+                }}
+                onClick={() => setGalleryZoom(idx)}
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "oklch(0.1 0.06 250 / 0.6)" }}
+                >
+                  <div
+                    className="p-3 rounded-full"
+                    style={{ background: "oklch(0.65 0.18 50 / 0.9)" }}
+                  >
+                    <svg
+                      className="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-label="Zoom in"
+                      role="img"
+                    >
+                      <title>Zoom in</title>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Lightbox */}
+        {galleryZoom !== null && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "oklch(0.05 0.02 250 / 0.95)" }}
+            onClick={() => setGalleryZoom(null)}
+            onKeyDown={(e) => e.key === "Escape" && setGalleryZoom(null)}
+            data-ocid="gallery.modal"
+          >
+            <button
+              type="button"
+              className="absolute top-4 right-4 p-2 rounded-full text-white"
+              style={{ background: "oklch(0.25 0.08 250)" }}
+              onClick={() => setGalleryZoom(null)}
+              data-ocid="gallery.close_button"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <button
+              type="button"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full text-white"
+              style={{ background: "oklch(0.25 0.08 250)" }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setGalleryZoom((g) => (g !== null ? (g - 1 + 6) % 6 : null));
+              }}
+              data-ocid="gallery.pagination_prev"
+            >
+              <ChevronRight className="w-6 h-6 rotate-180" />
+            </button>
+            <img
+              src={
+                [
+                  "/assets/uploads/tpo-1.jpg",
+                  "/assets/uploads/tcs-infosys-wipro_0-sixteen_nine_0-2.jpg",
+                  "/assets/uploads/PLACEMENTLOGOS-1-3.png",
+                  "/assets/uploads/PALCEMENTS-4.png",
+                  "/assets/uploads/Screenshot-2026-03-16-114126-5.png",
+                  "/assets/uploads/tp_2023-24-6.png",
+                ][galleryZoom]
+              }
+              alt="Gallery zoom"
+              className="max-w-full max-h-[85vh] rounded-xl object-contain"
+              style={{ boxShadow: "0 25px 60px oklch(0 0 0 / 0.5)" }}
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={(e) => e.stopPropagation()}
+            />
+            <button
+              type="button"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full text-white"
+              style={{ background: "oklch(0.25 0.08 250)" }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setGalleryZoom((g) => (g !== null ? (g + 1) % 6 : null));
+              }}
+              data-ocid="gallery.pagination_next"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+        )}
+      </section>
+
       {/* Enquiry Form */}
       <section
         id="admissions"
@@ -951,15 +1159,15 @@ function LandingPage() {
             "linear-gradient(135deg, oklch(0.18 0.08 250) 0%, oklch(0.22 0.12 255) 40%, oklch(0.28 0.15 20) 70%, oklch(0.32 0.18 40) 100%)",
         }}
       >
+        <div className="w-full mb-8">
+          <img
+            src="/assets/uploads/5527237c-8efb-404d-8fa1-14ea06e7062a-1.png"
+            alt="RGMCET Campus"
+            className="w-full object-cover"
+            style={{ maxHeight: "480px" }}
+          />
+        </div>
         <div className="max-w-3xl mx-auto px-4">
-          <div className="flex justify-center mb-8">
-            <img
-              src="/assets/uploads/5527237c-8efb-404d-8fa1-14ea06e7062a-1.png"
-              alt="RGMCET Campus"
-              className="rounded-2xl shadow-2xl w-full max-w-2xl object-cover"
-              style={{ maxHeight: "320px" }}
-            />
-          </div>
           <div className="text-center mb-10 fade-in-up">
             <div
               className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
@@ -1428,6 +1636,39 @@ function LandingPage() {
                     >
                       {badge}
                     </span>
+                  ))}
+                </div>
+                <div className="flex gap-3 mt-5">
+                  {[
+                    {
+                      Icon: SiFacebook,
+                      href: "https://www.facebook.com/profile.php?id=61586608216900",
+                      label: "Facebook",
+                    },
+                    { Icon: SiX, href: "#", label: "X (Twitter)" },
+                    { Icon: SiInstagram, href: "#", label: "Instagram" },
+                    { Icon: SiLinkedin, href: "#", label: "LinkedIn" },
+                    {
+                      Icon: SiYoutube,
+                      href: "https://www.youtube.com/@rgmcet-autonomousnandyala.7374",
+                      label: "YouTube",
+                    },
+                  ].map(({ Icon, href, label }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      aria-label={label}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-9 h-9 rounded-full transition-all hover:scale-110"
+                      style={{
+                        color: "#D4AF37",
+                        backgroundColor: "rgba(212,175,55,0.15)",
+                        border: "1px solid rgba(212,175,55,0.3)",
+                      }}
+                    >
+                      <Icon size={16} />
+                    </a>
                   ))}
                 </div>
               </div>
