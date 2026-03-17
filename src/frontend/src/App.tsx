@@ -538,6 +538,17 @@ function LandingPage() {
             </span>
             <br />
             &amp; Technology
+            <br />
+            <span
+              style={{
+                color: "oklch(var(--gold))",
+                fontSize: "0.75em",
+                fontWeight: "600",
+                letterSpacing: "0.1em",
+              }}
+            >
+              (Autonomous)
+            </span>
           </h1>
 
           <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto fade-in-up">
