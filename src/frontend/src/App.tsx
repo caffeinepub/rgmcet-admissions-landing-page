@@ -352,7 +352,7 @@ function LandingPage() {
           backdropFilter: "blur(12px)",
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             <div className="flex items-center gap-3">
               <img
@@ -617,10 +617,19 @@ function LandingPage() {
       <section
         id="programs"
         data-ocid="programs.section"
-        className="py-20"
-        style={{ backgroundColor: "oklch(0.13 0.055 250)" }}
+        className="py-20 relative"
+        style={{
+          backgroundImage: "url(/assets/uploads/PLACEMENTLOGOS-1.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "oklch(0.13 0.055 250 / 0.92)" }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
             <div
               className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
@@ -709,7 +718,7 @@ function LandingPage() {
         className="py-20"
         style={{ backgroundColor: "oklch(0.16 0.065 250)" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative fade-in-up">
               <div
@@ -852,7 +861,7 @@ function LandingPage() {
         className="py-20"
         style={{ backgroundColor: "oklch(0.13 0.055 250)" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14 fade-in-up">
             <div
               className="inline-block text-sm font-bold tracking-widest uppercase mb-3 px-3 py-1 rounded"
