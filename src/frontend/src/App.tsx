@@ -17,6 +17,7 @@ import {
   Building2,
   CheckCircle2,
   ChevronRight,
+  Code2,
   Cpu,
   FlaskConical,
   Globe,
@@ -26,8 +27,11 @@ import {
   Mail,
   MapPin,
   Menu,
+  MessageCircle,
   Microscope,
   Phone,
+  Radio,
+  Settings,
   Star,
   TrendingUp,
   Trophy,
@@ -41,6 +45,7 @@ import {
   SiFacebook,
   SiInstagram,
   SiLinkedin,
+  SiWhatsapp,
   SiX,
   SiYoutube,
 } from "react-icons/si";
@@ -238,6 +243,24 @@ const navLinks = [
 ];
 
 function LandingPage() {
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.id = "news-ticker-style";
+    style.textContent = [
+      "@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }",
+      ".news-ticker { animation: marquee 40s linear infinite; display: inline-flex; }",
+      ".news-ticker:hover { animation-play-state: paused; }",
+      "@keyframes deptScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }",
+      ".dept-scroll { animation: deptScroll 30s linear infinite; }",
+      ".dept-scroll:hover { animation-play-state: paused; }",
+      ".dept-card { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }",
+      ".dept-card:hover { transform: translateY(-6px); box-shadow: 0 0 20px oklch(0.85 0.18 85 / 0.35); border-color: oklch(0.85 0.18 85 / 0.7) !important; }",
+    ].join(" ");
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
@@ -261,6 +284,16 @@ function LandingPage() {
   const [footerSuccess, setFooterSuccess] = useState(false);
   const [footerSubmitting, setFooterSubmitting] = useState(false);
   const [galleryZoom, setGalleryZoom] = useState<number | null>(null);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMessages, setChatMessages] = useState<
+    { from: "bot" | "user"; text: string }[]
+  >([
+    {
+      from: "bot",
+      text: "Hi! Welcome to RGMCET. How can I help you today? You can ask about admissions, programs, fees, or campus life.",
+    },
+  ]);
+  const [chatInput, setChatInput] = useState("");
 
   const submitEnquiry = useSubmitEnquiry();
 
@@ -615,11 +648,234 @@ function LandingPage() {
           </div>
         </div>
 
+        {/* News Ticker */}
+        <div className="absolute bottom-20 left-0 right-0 z-20 overflow-hidden">
+          <div
+            style={{
+              background: "oklch(0.1 0.05 250 / 0.85)",
+              borderTop: "1px solid oklch(0.75 0.15 85 / 0.3)",
+              borderBottom: "1px solid oklch(0.75 0.15 85 / 0.3)",
+            }}
+          >
+            <div className="flex items-center">
+              <div
+                className="flex-shrink-0 px-4 py-2 font-bold text-xs tracking-widest"
+                style={{ background: "oklch(0.45 0.22 25)", color: "white" }}
+              >
+                🔴 LATEST NEWS
+              </div>
+              <div className="overflow-hidden flex-1">
+                <div
+                  className="news-ticker gap-8 whitespace-nowrap py-2 px-4 text-sm"
+                  style={{ color: "white" }}
+                >
+                  {[
+                    "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
+                    "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
+                    "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
+                    "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
+                    "NAAC Accredited & NBA Approved programs — Quality education guaranteed at RGMCET",
+                    "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
+                    "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
+                    "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
+                    "Scholarship opportunities available for meritorious students — Enquire today",
+                  ]
+                    .concat([
+                      "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
+                      "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
+                      "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
+                      "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
+                      "NAAC Accredited & NBA Approved programs — Quality education guaranteed at RGMCET",
+                      "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
+                      "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
+                      "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
+                      "Scholarship opportunities available for meritorious students — Enquire today",
+                    ])
+                    .map((item, i) => (
+                      <span key={`ticker-${i}-${item.slice(0, 10)}`}>
+                        <span
+                          style={{ color: "oklch(0.75 0.15 85)" }}
+                          className="mr-4"
+                        >
+                          ●
+                        </span>
+                        <span>{item}</span>
+                      </span>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <div
             className="w-px h-12 animate-bounce"
             style={{ backgroundColor: "oklch(var(--gold) / 0.5)" }}
           />
+        </div>
+      </section>
+
+      {/* Departments Scroll Strip */}
+      <section
+        className="py-0 overflow-hidden"
+        style={{ background: "oklch(0.10 0.05 250)" }}
+      >
+        <div className="text-center py-6">
+          <span
+            className="text-xs font-bold tracking-widest uppercase"
+            style={{ color: "oklch(0.85 0.18 85)" }}
+          >
+            Our Departments
+          </span>
+          <h2 className="text-white font-bold text-xl mt-1">
+            Academic Excellence Across Disciplines
+          </h2>
+        </div>
+        <div className="relative overflow-hidden pb-8">
+          <div
+            className="dept-scroll flex gap-5 px-4"
+            style={{ width: "max-content" }}
+          >
+            {[
+              {
+                short: "CSE",
+                full: "Computer Science & Engineering",
+                icon: <Cpu className="w-8 h-8" />,
+              },
+              {
+                short: "ECE",
+                full: "Electronics & Communication Engg.",
+                icon: <Radio className="w-8 h-8" />,
+              },
+              {
+                short: "EEE",
+                full: "Electrical & Electronics Engineering",
+                icon: <Zap className="w-8 h-8" />,
+              },
+              {
+                short: "ME",
+                full: "Mechanical Engineering",
+                icon: <Settings className="w-8 h-8" />,
+              },
+              {
+                short: "CE",
+                full: "Civil Engineering",
+                icon: <Building2 className="w-8 h-8" />,
+              },
+              {
+                short: "IT",
+                full: "Information Technology",
+                icon: <Globe className="w-8 h-8" />,
+              },
+              {
+                short: "MCA",
+                full: "Master of Computer Applications",
+                icon: <Code2 className="w-8 h-8" />,
+              },
+              {
+                short: "MBA",
+                full: "Master of Business Administration",
+                icon: <Briefcase className="w-8 h-8" />,
+              },
+              {
+                short: "M.Tech",
+                full: "VLSI · Structural · Power · CSE",
+                icon: <GraduationCap className="w-8 h-8" />,
+              },
+              {
+                short: "Ph.D",
+                full: "Research Programs",
+                icon: <FlaskConical className="w-8 h-8" />,
+              },
+            ]
+              .concat([
+                {
+                  short: "CSE",
+                  full: "Computer Science & Engineering",
+                  icon: <Cpu className="w-8 h-8" />,
+                },
+                {
+                  short: "ECE",
+                  full: "Electronics & Communication Engg.",
+                  icon: <Radio className="w-8 h-8" />,
+                },
+                {
+                  short: "EEE",
+                  full: "Electrical & Electronics Engineering",
+                  icon: <Zap className="w-8 h-8" />,
+                },
+                {
+                  short: "ME",
+                  full: "Mechanical Engineering",
+                  icon: <Settings className="w-8 h-8" />,
+                },
+                {
+                  short: "CE",
+                  full: "Civil Engineering",
+                  icon: <Building2 className="w-8 h-8" />,
+                },
+                {
+                  short: "IT",
+                  full: "Information Technology",
+                  icon: <Globe className="w-8 h-8" />,
+                },
+                {
+                  short: "MCA",
+                  full: "Master of Computer Applications",
+                  icon: <Code2 className="w-8 h-8" />,
+                },
+                {
+                  short: "MBA",
+                  full: "Master of Business Administration",
+                  icon: <Briefcase className="w-8 h-8" />,
+                },
+                {
+                  short: "M.Tech",
+                  full: "VLSI · Structural · Power · CSE",
+                  icon: <GraduationCap className="w-8 h-8" />,
+                },
+                {
+                  short: "Ph.D",
+                  full: "Research Programs",
+                  icon: <FlaskConical className="w-8 h-8" />,
+                },
+              ])
+              .map((dept, i) => (
+                <div
+                  key={`${dept.short}-${i}`}
+                  className="dept-card flex-shrink-0 flex flex-col items-center text-center px-5 py-4 rounded-xl cursor-default"
+                  style={{
+                    width: "180px",
+                    background: "oklch(1 0 0 / 0.05)",
+                    border: "1px solid oklch(0.85 0.18 85 / 0.25)",
+                  }}
+                  data-ocid="departments.item"
+                >
+                  <div className="relative mb-1">
+                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <div style={{ color: "oklch(0.85 0.18 85)" }}>
+                      {dept.icon}
+                    </div>
+                  </div>
+                  <p className="text-white font-bold text-sm mt-2">
+                    {dept.short}
+                  </p>
+                  <p className="text-white/60 text-xs mt-0.5 leading-tight">
+                    {dept.full}
+                  </p>
+                  <span
+                    className="mt-2 text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                    style={{
+                      background: "oklch(0.85 0.18 85 / 0.15)",
+                      color: "oklch(0.85 0.18 85)",
+                    }}
+                  >
+                    Admissions Open
+                  </span>
+                </div>
+              ))}
+          </div>
         </div>
       </section>
 
@@ -1823,6 +2079,218 @@ function LandingPage() {
         <GraduationCap className="w-4 h-4" />
         Apply Now
       </button>
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/919177777777"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-ocid="whatsapp.primary_button"
+        className="fixed bottom-6 left-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-transform hover:scale-110"
+        style={{ backgroundColor: "#25D366" }}
+        aria-label="Chat on WhatsApp"
+      >
+        <SiWhatsapp className="w-7 h-7 text-white" />
+      </a>
+
+      {/* Floating Chatbot Toggle */}
+      <button
+        type="button"
+        data-ocid="chatbot.toggle"
+        onClick={() => setChatOpen(!chatOpen)}
+        className="fixed bottom-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-2xl transition-transform hover:scale-110"
+        style={{
+          backgroundColor: "#0a1628",
+          border: "2px solid #D4AF37",
+          color: "white",
+        }}
+        aria-label="Open chat"
+      >
+        {chatOpen ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <MessageCircle className="w-6 h-6" />
+        )}
+      </button>
+
+      {/* Chatbot Panel */}
+      {chatOpen && (
+        <div
+          className="fixed bottom-40 right-6 z-50 w-80 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+          style={{ height: "420px", backgroundColor: "#fff" }}
+        >
+          {/* Header */}
+          <div
+            className="flex items-center justify-between px-4 py-3"
+            style={{ backgroundColor: "#0a1628" }}
+          >
+            <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "#D4AF37" }}
+              >
+                <GraduationCap className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <div className="text-white font-bold text-sm">
+                  RGMCET Admissions Help
+                </div>
+                <div className="text-green-400 text-xs">● Online</div>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setChatOpen(false)}
+              className="text-white/70 hover:text-white transition-colors"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Messages */}
+          <div
+            className="flex-1 overflow-y-auto p-3 space-y-3"
+            style={{ backgroundColor: "#f0f4f8" }}
+          >
+            {chatMessages.map((msg, i) => (
+              <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: chat messages are append-only
+                key={i}
+                className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className="max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed"
+                  style={
+                    msg.from === "bot"
+                      ? {
+                          backgroundColor: "#fff",
+                          color: "#1a1a2e",
+                          boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+                        }
+                      : { backgroundColor: "#0a1628", color: "white" }
+                  }
+                >
+                  {msg.text}
+                </div>
+              </div>
+            ))}
+            {/* Quick replies (only show if last message is bot's first message) */}
+            {chatMessages.length === 1 && (
+              <div className="flex flex-col gap-2 mt-2">
+                {["Admissions Process", "Programs Offered", "Contact Us"].map(
+                  (q) => (
+                    <button
+                      key={q}
+                      type="button"
+                      onClick={() => {
+                        const responses: Record<string, string> = {
+                          "Admissions Process":
+                            "Our admissions are open for 2025! You can apply online or visit our campus. For assistance, call us at +91-8518-222200.",
+                          "Programs Offered":
+                            "We offer B.Tech (CSE, ECE, EEE, ME, CE, IT), M.Tech, MCA, MBA, and Ph.D programs. All affiliated to JNTUA.",
+                          "Contact Us":
+                            "Reach us at: Phone: +91-8518-222200 | Email: info@rgmcet.edu.in | Address: Nandyal, Andhra Pradesh.",
+                        };
+                        setChatMessages((prev) => [
+                          ...prev,
+                          { from: "user", text: q },
+                          { from: "bot", text: responses[q] },
+                        ]);
+                      }}
+                      className="text-left text-xs rounded-xl px-3 py-2 font-medium transition-colors hover:opacity-90"
+                      style={{
+                        backgroundColor: "#fff",
+                        color: "#0a1628",
+                        border: "1.5px solid #D4AF37",
+                      }}
+                    >
+                      {q}
+                    </button>
+                  ),
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Input */}
+          <div
+            className="flex gap-2 p-3 border-t"
+            style={{ backgroundColor: "#fff", borderColor: "#e2e8f0" }}
+          >
+            <input
+              type="text"
+              value={chatInput}
+              onChange={(e) => setChatInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && chatInput.trim()) {
+                  const userText = chatInput.trim();
+                  const lower = userText.toLowerCase();
+                  let botReply =
+                    "Thank you for your message! Our admissions team will contact you shortly. You can also call us at +91-8518-222200.";
+                  if (lower.includes("admission"))
+                    botReply =
+                      "Our admissions are open for 2025! You can apply online or visit our campus. For assistance, call us at +91-8518-222200.";
+                  else if (
+                    lower.includes("program") ||
+                    lower.includes("course")
+                  )
+                    botReply =
+                      "We offer B.Tech (CSE, ECE, EEE, ME, CE, IT), M.Tech, MCA, MBA, and Ph.D programs. All affiliated to JNTUA.";
+                  else if (
+                    lower.includes("contact") ||
+                    lower.includes("phone") ||
+                    lower.includes("email")
+                  )
+                    botReply =
+                      "Reach us at: Phone: +91-8518-222200 | Email: info@rgmcet.edu.in | Address: Nandyal, Andhra Pradesh.";
+                  setChatMessages((prev) => [
+                    ...prev,
+                    { from: "user", text: userText },
+                    { from: "bot", text: botReply },
+                  ]);
+                  setChatInput("");
+                }
+              }}
+              placeholder="Type your message..."
+              className="flex-1 text-sm rounded-xl px-3 py-2 outline-none border"
+              style={{ borderColor: "#e2e8f0", fontSize: "13px" }}
+            />
+            <button
+              type="button"
+              onClick={() => {
+                if (!chatInput.trim()) return;
+                const userText = chatInput.trim();
+                const lower = userText.toLowerCase();
+                let botReply =
+                  "Thank you for your message! Our admissions team will contact you shortly. You can also call us at +91-8518-222200.";
+                if (lower.includes("admission"))
+                  botReply =
+                    "Our admissions are open for 2025! You can apply online or visit our campus. For assistance, call us at +91-8518-222200.";
+                else if (lower.includes("program") || lower.includes("course"))
+                  botReply =
+                    "We offer B.Tech (CSE, ECE, EEE, ME, CE, IT), M.Tech, MCA, MBA, and Ph.D programs. All affiliated to JNTUA.";
+                else if (
+                  lower.includes("contact") ||
+                  lower.includes("phone") ||
+                  lower.includes("email")
+                )
+                  botReply =
+                    "Reach us at: Phone: +91-8518-222200 | Email: info@rgmcet.edu.in | Address: Nandyal, Andhra Pradesh.";
+                setChatMessages((prev) => [
+                  ...prev,
+                  { from: "user", text: userText },
+                  { from: "bot", text: botReply },
+                ]);
+                setChatInput("");
+              }}
+              className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors hover:opacity-90 flex-shrink-0"
+              style={{ backgroundColor: "#0a1628" }}
+            >
+              <ChevronRight className="w-4 h-4 text-white" />
+            </button>
+          </div>
+        </div>
+      )}
 
       <Toaster richColors position="top-right" />
     </div>
