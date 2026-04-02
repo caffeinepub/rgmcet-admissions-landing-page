@@ -236,10 +236,10 @@ const testimonials = [
 
 const navLinks = [
   { label: "Home", target: "home" },
+  { label: "About RGMCET", target: "about" },
   { label: "Programs", target: "programs" },
-  { label: "About", target: "about" },
-  { label: "Admissions", target: "admissions" },
-  { label: "Contact", target: "contact" },
+  { label: "Admission", target: "admissions" },
+  { label: "Contact Us", target: "contact" },
 ];
 
 function LandingPage() {
@@ -560,7 +560,7 @@ function LandingPage() {
             }}
           >
             <Star className="w-3 h-3 fill-current" />
-            NAAC Accredited · Affiliated to JNTUA
+            NAAC A+ · Affiliated to JNTUA
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 fade-in-up">
@@ -674,7 +674,7 @@ function LandingPage() {
                     "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
                     "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
                     "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
-                    "NAAC Accredited & NBA Approved programs — Quality education guaranteed at RGMCET",
+                    "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
                     "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
                     "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
                     "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
@@ -685,7 +685,7 @@ function LandingPage() {
                       "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
                       "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
                       "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
-                      "NAAC Accredited & NBA Approved programs — Quality education guaranteed at RGMCET",
+                      "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
                       "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
                       "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
                       "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
@@ -888,7 +888,7 @@ function LandingPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <StatItem
-              value={25}
+              value={30}
               suffix="+"
               label="Years of Excellence"
               started={statsVisible}
@@ -916,7 +916,7 @@ function LandingPage() {
             className="text-center mt-8 text-sm font-semibold tracking-widest uppercase"
             style={{ color: "oklch(var(--gold) / 0.8)" }}
           >
-            NAAC Accredited · Affiliated to JNTUA · NBA Accredited Programs
+            NAAC A+ · Affiliated to JNTUA · NBA Accredited Programs
           </div>
         </div>
       </section>
@@ -1044,7 +1044,7 @@ function LandingPage() {
                   className="font-display text-3xl font-bold"
                   style={{ color: "oklch(var(--gold))" }}
                 >
-                  25+
+                  30+
                 </div>
                 <div className="text-white/80 text-xs mt-0.5">
                   Years of Excellence
@@ -1122,8 +1122,8 @@ function LandingPage() {
             {[
               {
                 icon: <Award className="w-8 h-8" />,
-                title: "NAAC Accredited",
-                sub: "Grade A Institution",
+                title: "NAAC A+",
+                sub: "Grade A+ Institution",
               },
               {
                 icon: <Trophy className="w-8 h-8" />,
@@ -2040,6 +2040,21 @@ function LandingPage() {
                     </a>
                   </li>
                 </ul>
+                <a
+                  href="https://www.rgmcet.edu.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-ocid="footer.official_website.link"
+                  className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-sm transition-all hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #D4AF37, #f0d060)",
+                    color: "#1a1a2e",
+                    border: "2px solid #D4AF37",
+                    boxShadow: "0 0 12px rgba(212,175,55,0.4)",
+                  }}
+                >
+                  🌐 Visit Official Website
+                </a>
               </div>
             </div>
 
@@ -2049,7 +2064,7 @@ function LandingPage() {
             >
               <span>
                 © {new Date().getFullYear()} RGMCET. Affiliated to JNTUA · NAAC
-                Accredited · All rights reserved.
+                A+ Accredited · All rights reserved.
               </span>
               <a
                 href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
