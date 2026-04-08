@@ -550,7 +550,67 @@ function LandingPage() {
           />
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-24">
+        {/* News Ticker - MOVED TO TOP */}
+        <div className="absolute top-[80px] left-0 right-0 z-20 overflow-hidden">
+          <div
+            style={{
+              background: "oklch(0.1 0.05 250 / 0.85)",
+              borderTop: "1px solid oklch(0.75 0.15 85 / 0.3)",
+              borderBottom: "1px solid oklch(0.75 0.15 85 / 0.3)",
+            }}
+          >
+            <div className="flex items-center">
+              <div
+                className="flex-shrink-0 px-4 py-2 font-bold text-xs tracking-widest"
+                style={{ background: "oklch(0.45 0.22 25)", color: "white" }}
+              >
+                🔴 LATEST NEWS
+              </div>
+              <div className="overflow-hidden flex-1">
+                <div
+                  className="news-ticker gap-8 whitespace-nowrap py-2 px-4 text-sm"
+                  style={{ color: "white" }}
+                >
+                  {[
+                    "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
+                    "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
+                    "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
+                    "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
+                    "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
+                    "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
+                    "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
+                    "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
+                    "Scholarship opportunities available for meritorious students — Enquire today",
+                  ]
+                    .concat([
+                      "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
+                      "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
+                      "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
+                      "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
+                      "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
+                      "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
+                      "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
+                      "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
+                      "Scholarship opportunities available for meritorious students — Enquire today",
+                    ])
+                    .map((item, i) => (
+                      <span key={`ticker-${i}-${item.slice(0, 10)}`}>
+                        <span
+                          style={{ color: "oklch(0.75 0.15 85)" }}
+                          className="mr-4"
+                        >
+                          ●
+                        </span>
+                        <span>{item}</span>
+                      </span>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto pt-36">
           <div
             className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase"
             style={{
@@ -645,66 +705,6 @@ function LandingPage() {
                 <div className="text-white/70 text-xs mt-0.5">{item.s}</div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* News Ticker */}
-        <div className="absolute bottom-20 left-0 right-0 z-20 overflow-hidden">
-          <div
-            style={{
-              background: "oklch(0.1 0.05 250 / 0.85)",
-              borderTop: "1px solid oklch(0.75 0.15 85 / 0.3)",
-              borderBottom: "1px solid oklch(0.75 0.15 85 / 0.3)",
-            }}
-          >
-            <div className="flex items-center">
-              <div
-                className="flex-shrink-0 px-4 py-2 font-bold text-xs tracking-widest"
-                style={{ background: "oklch(0.45 0.22 25)", color: "white" }}
-              >
-                🔴 LATEST NEWS
-              </div>
-              <div className="overflow-hidden flex-1">
-                <div
-                  className="news-ticker gap-8 whitespace-nowrap py-2 px-4 text-sm"
-                  style={{ color: "white" }}
-                >
-                  {[
-                    "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
-                    "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
-                    "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
-                    "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
-                    "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
-                    "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
-                    "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
-                    "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
-                    "Scholarship opportunities available for meritorious students — Enquire today",
-                  ]
-                    .concat([
-                      "Admissions Open 2025-26 for B.Tech, M.Tech, MCA, MBA & Ph.D programs — Apply Now!",
-                      "RGMCET Nandyal ranked among top engineering colleges in Andhra Pradesh",
-                      "B.Tech Admissions 2025: CSE, ECE, EEE, Mechanical, Civil & IT branches available",
-                      "M.Tech & MCA Admissions 2025 — Limited seats, register your interest today",
-                      "NAAC A+ & NBA Approved programs — Quality education guaranteed at RGMCET",
-                      "Student Achievement: RGMCET students bag placements at TCS, Infosys, Wipro & more",
-                      "MBA & Ph.D programs open for enrollment — Industry-aligned curriculum",
-                      "RGMCET Annual Tech Fest 2025 — Register now for exciting competitions and workshops",
-                      "Scholarship opportunities available for meritorious students — Enquire today",
-                    ])
-                    .map((item, i) => (
-                      <span key={`ticker-${i}-${item.slice(0, 10)}`}>
-                        <span
-                          style={{ color: "oklch(0.75 0.15 85)" }}
-                          className="mr-4"
-                        >
-                          ●
-                        </span>
-                        <span>{item}</span>
-                      </span>
-                    ))}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
